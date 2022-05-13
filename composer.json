@@ -1,5 +1,5 @@
 {
-    "name": "sevaske/git-webhook-ci",
+    "name": "sevaske/git-webhook-handler",
     "description": "The simple way to automatically update your app using a webhook.",
     "type": "library",
     "license": "MIT",
