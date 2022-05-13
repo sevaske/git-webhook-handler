@@ -13,6 +13,10 @@ class BitbucketHandler extends AbstractHandler
 
     public function getChangedBranches(): array
     {
+        if (!$this->request) {
+            return [];
+        }
+
         if (!isset($this->request->{self::REQUEST_PUSH}->{self::REQUEST_CHANGES})) {
             return [];
         }

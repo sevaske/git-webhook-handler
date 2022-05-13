@@ -6,7 +6,7 @@ namespace GitWebhookHandler\Request;
 
 abstract class AbstractHandler implements HandlerInterface
 {
-    public object $request;
+    public ?object $request;
 
     /**
      * @param string $requestContent JSON Format

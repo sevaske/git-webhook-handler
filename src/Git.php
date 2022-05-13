@@ -36,27 +36,32 @@ class Git
     /**
      * TODO result checking
      */
-    public function fetch(): bool
+    public function fetch(): Terminal\CommandResult
     {
-        Command::exec("cd {$this->projectPath} && {$this->gitAlias} fetch");
-
-        return true;
+        return Command::exec("cd {$this->projectPath} && {$this->gitAlias} fetch");
     }
 
     /**
      * TODO result checking
      */
-    public function pull(): bool
+    public function pull(): Terminal\CommandResult
     {
-        Command::exec("cd {$this->projectPath} && {$this->gitAlias} pull origin {$this->branchName}");
-
-        return true;
+        return Command::exec("cd {$this->projectPath} && {$this->gitAlias} pull origin {$this->branchName}");
     }
 
     protected function setBranchName(): void
     {
         $commandResult = Command::exec("cd {$this->projectPath} && {$this->gitAlias} branch");
-        $branchName = trim($commandResult);
-        $this->branchName = $branchName ?: null;
+
+        if (!$commandResult->output) {
+            return;
+        }
+
+        foreach ($commandResult->output as $branch) {
+            if (strpos($branch, '*') === 0) {
+                $this->branchName = trim(substr($branch, 2));
+                return;
+            }
+        }
     }
 }
