@@ -1,0 +1,23 @@
+{
+    "name": "sevaske/git-webhook-ci",
+    "description": "The simple way to automatically update your app using a webhook.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sevak Mnatcakanian",
+            "email": "sevakmnatcakanian@gmail.com",
+            "homepage": "https://sevaske.com/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "GitWebhookHandler\\": "src/"
+        }
+    }
+}
