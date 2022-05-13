@@ -55,7 +55,8 @@ class Git
 
     protected function setBranchName(): void
     {
-        $branchName = Command::exec("cd {$this->projectPath} && {$this->gitAlias} branch")->output;
+        $commandResult = Command::exec("cd {$this->projectPath} && {$this->gitAlias} branch");
+        $branchName = trim($commandResult);
         $this->branchName = $branchName ?: null;
     }
 }
