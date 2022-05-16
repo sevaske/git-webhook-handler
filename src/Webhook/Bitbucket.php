@@ -43,6 +43,7 @@ class Bitbucket
         }
 
         $errors = \GitWebhookHandler\Terminal\Git::catchErrors($pullResult);
+
         if ($errors) {
             array_push($this->errors, ...$errors);
             return false;

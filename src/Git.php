@@ -5,6 +5,7 @@ namespace GitWebhookHandler;
 
 
 use GitWebhookHandler\Terminal\Command;
+use RuntimeException;
 
 class Git
 {
@@ -28,9 +29,18 @@ class Git
         string $gitAlias = 'git'
     )
     {
-        $this->projectPath = $projectPath;
+        $this->projectPath = realpath($projectPath);
+
+        if (!file_exists($this->projectPath)) {
+            throw new RuntimeException("The project path {$this->projectPath} is not correct.");
+        }
+
         $this->gitAlias = $gitAlias;
         $this->setBranchName();
+
+        if (!$this->branchName) {
+            throw new RuntimeException("The branch is undefined.");
+        }
     }
 
     public function fetch(): Terminal\CommandResult
