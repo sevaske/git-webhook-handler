@@ -10,9 +10,9 @@ use GitWebhookHandler\Request\BitbucketHandler;
 
 class Bitbucket
 {
-    protected string $projectPath;
-    protected AbstractHandler $requestHandler;
-    protected Git $git;
+    public AbstractHandler $requestHandler;
+    public Git $git;
+    public string $projectPath;
 
     public function __construct(
         string $requestContent,
