@@ -33,17 +33,11 @@ class Git
         $this->setBranchName();
     }
 
-    /**
-     * TODO result checking
-     */
     public function fetch(): Terminal\CommandResult
     {
         return Command::exec("cd {$this->projectPath} && {$this->gitAlias} fetch");
     }
 
-    /**
-     * TODO result checking
-     */
     public function pull(): Terminal\CommandResult
     {
         return Command::exec("cd {$this->projectPath} && {$this->gitAlias} pull origin {$this->branchName}");
