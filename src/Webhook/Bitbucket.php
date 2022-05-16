@@ -13,6 +13,7 @@ class Bitbucket
     public AbstractHandler $requestHandler;
     public Git $git;
     public string $projectPath;
+    public array $errors = [];
 
     public function __construct(
         string $requestContent,
@@ -34,6 +35,19 @@ class Bitbucket
             return null;
         }
 
-        return $this->git->fetch() && $this->git->pull();
+        $this->git->fetch();
+        $pullResult = $this->git->pull();
+
+        if (\GitWebhookHandler\Terminal\Git::catchNoChanges($pullResult)) {
+            return null;
+        }
+
+        $errors = \GitWebhookHandler\Terminal\Git::catchErrors($pullResult);
+        if ($errors) {
+            array_push($this->errors, ...$errors);
+            return false;
+        }
+
+        return true;
     }
 }
