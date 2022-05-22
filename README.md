@@ -15,8 +15,6 @@ composer require sevaske/git-webhook-handler
 
 ### Example
 {your_project_path}/webhook/index.php
-
-If you only need to update:
 ```php
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
