@@ -13,13 +13,13 @@ git pull origin {current_branch_name}
 composer require sevaske/git-webhook-handler
 ```
 
-### Example
-{your_project_path}/webhook/index.php
+### Examples
+You can create a file: {your_project_path}/webhook/index.php
+##### Just update the project
 ```php
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// git
 $projectRootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
 $requestContent = file_get_contents("php://input");
 $gitAlias = 'git';
@@ -30,10 +30,25 @@ $webhook = new \GitWebhookHandler\Webhook\Bitbucket(
     $gitAlias
 );
 
-// If you just need to know result
-$result = $webhook->handlePull();
-// OR
-// if you want to have the execution result
+$result = $webhook->handlePull(); // boolean
+```
+
+##### Update and process the results
+```php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$projectRootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+$requestContent = file_get_contents("php://input");
+$gitAlias = 'git';
+
+$webhook = new \GitWebhookHandler\Webhook\Bitbucket(
+    $projectRootPath,
+    $requestContent,
+    $gitAlias
+);
+
+// update and get results of executions
 $fetchResult = $webhook->git->fetch();
 $pullResult = $webhook->git->pull();
 
@@ -54,3 +69,18 @@ $composerUpdateCommand = "export COMPOSER_HOME=/home/sevaske/.composer && cd {$p
 $composerUpdateResult = \GitWebhookHandler\Terminal\Command::exec($composerUpdateCommand);
 $composerUpdateResult->output; // The result of executing the command "composer update"
 ```
+
+### Errors?
+If you have any errors related to accessing the repository, you can run the following command:
+```
+git config --global --add safe.directory {project_path}
+sudo git remote set-url origin https://{bitbucket_user}:{auth_pass}@bitbucket.org/{project_name}/{repo_name}.git
+```
+Also, the script must have access to all the files of your project otherwise you may have an error.
+A quick solution (*but unsafe, so be careful*):
+```
+sudo chown -R www-data:www-data {project_path}
+```
+
+### What about security?
+The webhook checks the branch name and checks if such a branch exists in the repository. The execution command is fixed and does not contain anything dynamic.
