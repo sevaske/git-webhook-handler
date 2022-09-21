@@ -1,14 +1,13 @@
 <?php
 
 
-namespace GitWebhookHandler\Webhook;
+namespace GitWebhookHandler;
 
 
 use GitWebhookHandler\Git;
 use GitWebhookHandler\Request\AbstractHandler;
-use GitWebhookHandler\Request\BitbucketHandler;
 
-class Bitbucket
+class Webhook
 {
     public AbstractHandler $requestHandler;
     public Git $git;
@@ -16,14 +15,14 @@ class Bitbucket
     public array $errors = [];
 
     public function __construct(
-        string $requestContent,
+        AbstractHandler $requestHandler,
         string $projectPath,
-        string $gitAlias
+        string $gitAlias = 'git'
     )
     {
         $this->projectPath = $projectPath;
         $this->git = new Git($projectPath, $gitAlias);
-        $this->requestHandler = new BitbucketHandler($requestContent);
+        $this->requestHandler = $requestHandler;
     }
 
     /**

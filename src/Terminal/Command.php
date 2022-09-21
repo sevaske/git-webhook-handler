@@ -6,8 +6,7 @@ namespace GitWebhookHandler\Terminal;
 
 class Command
 {
-    final private function __construct(){}
-    final private function __clone(){}
+    private function __clone(){}
 
     public static function exec(string $command): CommandResult
     {
