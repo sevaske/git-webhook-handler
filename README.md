@@ -20,7 +20,7 @@ You have 2 Existing Handlers :
  - BitbucketHandler
  - GithubHandler
 
- 
+
 need more handlers ? you can add any handler you want just by extending AbstractHandler class
 ##### Just update the project
 ```php
@@ -91,3 +91,5 @@ sudo chown -R www-data:www-data {project_path}
 
 ### What about security?
 The webhook checks the branch name and checks if such a branch exists in the repository. The execution command is fixed and does not contain anything dynamic.
+
+You should add your server's ip to the webhook whitelist .
