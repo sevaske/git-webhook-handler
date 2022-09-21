@@ -15,6 +15,13 @@ composer require sevaske/git-webhook-handler
 
 ### Examples
 You can create a file: {your_project_path}/webhook/index.php
+### Handlers
+You have 2 Existing Handlers :
+ - BitbucketHandler
+ - GithubHandler
+
+ 
+need more handlers ? you can add any handler you want just by extending AbstractHandler class
 ##### Just update the project
 ```php
 <?php
@@ -24,9 +31,9 @@ $projectRootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
 $requestContent = file_get_contents("php://input");
 $gitAlias = 'git';
 
-$webhook = new \GitWebhookHandler\Webhook\Bitbucket(
+$webhook = new \GitWebhookHandler\Webhook(
+    new BitbucketHandler($requestContent),
     $projectRootPath,
-    $requestContent,
     $gitAlias
 );
 
@@ -42,9 +49,9 @@ $projectRootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
 $requestContent = file_get_contents("php://input");
 $gitAlias = 'git';
 
-$webhook = new \GitWebhookHandler\Webhook\Bitbucket(
+$webhook = new \GitWebhookHandler\Webhook(
+    new BitbucketHandler($requestContent),
     $projectRootPath,
-    $requestContent,
     $gitAlias
 );
 
