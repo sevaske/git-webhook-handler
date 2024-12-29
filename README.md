@@ -1,3 +1,7 @@
+# Credits
+##### All credits goes to Sevak https://github.com/sevaske
+
+
 # Git Webhook Handler
 ##### The simple way to automatically update your app using a webhook.
 This script listens to the bitbucket webhook and updates the current brunch of your project. 
