@@ -4,7 +4,7 @@
 
 # Git Webhook Handler
 ##### The simple way to automatically update your app using a webhook.
-This script listens to the bitbucket webhook and updates the current brunch of your project. 
+This script listens to the bitbucket/github webhook and updates the current brunch of your project. 
 
 ##### What does it do? 
 ```
@@ -14,7 +14,7 @@ git pull origin {current_branch_name}
 
 ### Install
 ```
-composer require sevaske/git-webhook-handler
+composer require h-ishak/git-webhook-handler
 ```
 
 ### Examples
