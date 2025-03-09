@@ -1,13 +1,12 @@
 {
-    "name": "sevaske/git-webhook-handler",
+    "name": "h-ishak/git-webhook-handler",
     "description": "The simple way to automatically update your app using a webhook.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Sevak Mnatcakanian",
-            "email": "sevakmnatcakanian@gmail.com",
-            "homepage": "https://sevaske.com/"
+            "name": "Hadjal Ishak",
+            "email": "ishak.hadjal@gmail.com"
         }
     ],
     "minimum-stability": "dev",
